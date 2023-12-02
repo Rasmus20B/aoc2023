@@ -1,5 +1,18 @@
 
 import Data.Char
+import Data.List.Split
+
+values = [
+("one", 1), 
+("two", 2), 
+("three", 3), 
+("four", 4), 
+("five", 5), 
+("six", 6), 
+("seven", 7), 
+("eight", 8), 
+("nine", 9)
+]
 
 getDigits :: String -> String
 getDigits = filter isDigit
@@ -17,7 +30,7 @@ part1 :: String -> Int
 part1 s = sum $ map (getFirstAndLastInt) (lines s)
 
 part2 :: String -> Int 
-part2 s = sum $ map (getFirstAndLastInt) (lines s)
+part2 s = sum $ map splitOn (lines s)
 
 
 main :: IO ()
