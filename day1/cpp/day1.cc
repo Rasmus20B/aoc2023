@@ -47,7 +47,6 @@ auto part2_mp(std::string_view content) -> size_t {
   std::atomic<size_t> sum{0};
 
   auto worker = [&](const size_t s, const size_t e) {
-    // std::cout << "Thread " << std::this_thread::get_id() << ": Start = " << s << ", End = " << e << "\n";
     for(auto l : std::span(lines_s.begin() + s, lines_s.begin() + e)) {
       std::string corrected = "";
       for(size_t i = 0; i < l.size() ; ++i) {
