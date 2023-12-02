@@ -199,14 +199,14 @@ auto main() -> int {
   auto start = std::chrono::high_resolution_clock::now();
   auto res = part2(get_file_as_string("../data"));
   auto end = std::chrono::high_resolution_clock::now();
-  std::cout << "Part2   : " << res << " in " << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() << "us.\n";
+  std::cout << "Part2   : " << res << " in " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "us.\n";
   }
 
   {
   auto start = std::chrono::high_resolution_clock::now();
-  auto res = part2_mp(get_file_as_string("../data"));
+  auto res = part2_mp(get_file_as_string("../bigboy"));
   auto end = std::chrono::high_resolution_clock::now();
-  std::cout << "Part2 MP: " << res << " in " << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() << "us.\n";
+  std::cout << "Part2 MP: " << res << " in " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "us.\n";
   }
   return 0;
 }
