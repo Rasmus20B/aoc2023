@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, sync::atomic};
 
 fn check_totals(totals : Vec<u16>) -> bool {
 
