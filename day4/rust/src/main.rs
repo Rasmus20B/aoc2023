@@ -1,23 +1,25 @@
 use std::collections::HashSet;
 
-fn process(line: &str) -> usize {
+use rustc_hash::FxHashSet;
 
-    let ans : Vec<_> = line.split(":").collect::<Vec<_>>()[1].split("|")
+
+fn process(line: &str, wins: &mut FxHashSet<usize>) -> usize {
+
+    let ans : Vec<Vec<usize>> = line.split(":").collect::<Vec<_>>()[1].split("|")
         .map(|h| h
              .split(" ")
              .into_iter()
              .filter(|c| *c != "")
              .into_iter()
-             .map(|s: &str| s.parse::<usize>().unwrap()))
+             .map(|s: &str| s.parse::<usize>().unwrap()).collect::<Vec<usize>>())
         .collect();
 
     let mut n_matches = 0;
-
-    let wins : HashSet<usize> = std::collections::HashSet::from_iter(ans[0].clone().collect::<Vec<_>>());
-
+    wins.extend(ans[0].iter().copied());
     for g in ans[1].clone() {
         n_matches += usize::from(wins.contains(&g));
     }
+    wins.clear();
     return n_matches;
 }
 
@@ -27,8 +29,10 @@ fn part2(data: &str) -> usize {
     let mut totals : Vec<usize> = Vec::new();
     totals.resize(lines.len(), 1);
 
+    let mut wins : FxHashSet<usize> = Default::default();
+
     for i in 0..data.lines().count() {
-        let matches_per_card : usize = process(lines[i]);
+        let matches_per_card : usize = process(lines[i], &mut wins);
         let range = i+matches_per_card;
 
         if i > range {
