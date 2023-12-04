@@ -2,7 +2,7 @@ use std::collections::HashSet;
 
 fn process(line: &str) -> usize {
 
-    let ans : Vec<_> = line[9..].split("|")
+    let ans : Vec<_> = line.split(":").collect::<Vec<_>>()[1].split("|")
         .map(|h| h
              .split(" ")
              .into_iter()
@@ -89,7 +89,7 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"), 30);
 }
 
 fn main() {
-    let content = std::fs::read_to_string("../data").expect("Unable to read file");
+    let content = std::fs::read_to_string("../bigboy.txt").expect("Unable to read file");
     // println!("Part1: {}", part1(&content));
     println!("Part2: {}", part2(&content));
 }
