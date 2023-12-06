@@ -4,8 +4,17 @@ fn part1(data: &str) -> usize {
 
     let races : Vec<_> = data.lines().collect();
 
-    let times : Vec<usize> = races[0].split_whitespace().skip(1).map(|n| n.parse::<usize>().unwrap()).collect();
-    let distances : Vec<usize> = races[1].split_whitespace().skip(1).map(|n| n.parse::<usize>().unwrap()).collect();
+    let times : Vec<usize> = races[0]
+        .split_whitespace()
+        .skip(1)
+        .map(|n| n.parse::<usize>().unwrap())
+        .collect();
+    let distances : Vec<usize> = races[1]
+        .split_whitespace()
+        .skip(1)
+        .map(|n| n.parse::<usize>().unwrap())
+        .collect();
+
     let mut wins : Vec<usize> = Default::default();
     wins.reserve(times.len());
 
@@ -28,8 +37,19 @@ fn part1(data: &str) -> usize {
 fn part2(data: &str) -> f64 {
     
     let races : Vec<_> = data.lines().collect();
-    let time = races[0].split_whitespace().filter(|c| *c != " ").skip(1).collect::<Vec<&str>>().join("").parse::<f64>().unwrap();
-    let distance = races[1].split_whitespace().filter(|c| *c != " ").skip(1).collect::<Vec<&str>>().join("").parse::<f64>().unwrap();
+    let time = races[0]
+        .split_whitespace()
+        .filter(|c| *c != " ")
+        .skip(1)
+        .collect::<Vec<&str>>()
+        .join("")
+        .parse::<f64>().unwrap();
+    let distance = races[1]
+        .split_whitespace()
+        .filter(|c| *c != " ")
+        .skip(1).collect::<Vec<&str>>()
+        .join("")
+        .parse::<f64>().unwrap();
 
     let r1 = (-time - (((time * time) - 4.0 * distance)).sqrt()) / -2.0;
     let r2 = (-time + (((time * time) - 4.0 * distance)).sqrt()) / -2.0;
