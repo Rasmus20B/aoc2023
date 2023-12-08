@@ -239,7 +239,6 @@ QQQJA 483"), 5905);
 }
 
 fn main() {
-
     let content = std::fs::read_to_string("../data.txt").expect("Unable to read input data");
 
     println!("Silver: {}", part1(&content));
